@@ -34,4 +34,12 @@ Route::get('/komisiwanita', [App\Http\Controllers\KomisiWanitaController::class,
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+
+    //admin
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/agendaadmin', [App\Http\Controllers\AgendaController::class, 'indexadmin'])->name('admin.agenda');
+    Route::get('/fasilitasadmin', [App\Http\Controllers\FasilitasController::class, 'indexadmin'])->name('admin.fasilitas');
+    Route::get('/datatablejemaatadmin', [App\Http\Controllers\DatatableJemaatController::class, 'indexadmin'])->name('admin.datatablejemaat');
+    
+});

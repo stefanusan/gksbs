@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+	<!-- <link rel="stylesheet" href="{{ asset('css/admin.css') }}"> -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css"> -->
 	@yield('custom-css')
@@ -23,9 +23,9 @@
 	</div>
 	<script src="{{ asset('js/app.js') }}"></script>
 	<!-- <script src="{{ asset('js/admin.js') }}"></script> -->
-	<script>
+	<!-- <script>
 		$.widget.bridge('uibutton', $.ui.button)
-	</script>
+	</script> -->
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 	<!-- <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script> -->
 

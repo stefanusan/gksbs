@@ -17,6 +17,13 @@ class FasilitasController extends Controller
         return view('pages.fasilitas');
     }
 
+    public function indexadmin()
+    {
+        //
+        return view('admin.fasilitas');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

@@ -49,6 +49,11 @@ class DatatableJemaatController extends Controller
         );
     }
 
+    public function indexadmin()
+    {
+        return view('admin.datatablejemaat');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

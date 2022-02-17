@@ -36,6 +36,13 @@ class AgendaController extends Controller
         
     }
 
+    public function indexadmin()
+    {
+        //
+        return view('admin.agenda');      
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

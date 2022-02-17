@@ -6,10 +6,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+	<!-- <link rel="stylesheet" href="{{ asset('css/admin.css') }}"> -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css"> -->
-	@yield('custom-css')
+	
 	<title>ADMIN GKSBS</title>
 </head>
 
@@ -49,7 +49,7 @@
 		//currentLink[0].closest(".has-treeview").classList.add("active");
 	}
 	</script>
-  	@yield('custom-js')
+    @yield('custom-js-admin')
 </body>
 
 </html>
