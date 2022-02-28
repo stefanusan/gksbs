@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAgenda2sTable extends Migration
+class CreateAgendasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateAgenda2sTable extends Migration
      */
     public function up()
     {
-        Schema::create('agenda2s', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('agendas', function (Blueprint $table) {
+            $table->id();
             $table->string('kegiatan');
             $table->string('waktu');
             $table->string('sasaran');
             $table->string('jejaring');
             $table->string('pelaksana');
-            $table->string('2021');
+            $table->string('tahun');
             $table->string('output');
-            $table->string('outcome');
+            $table->timestamps();
         });
     }
 
@@ -33,6 +33,6 @@ class CreateAgenda2sTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agenda2s');
+        Schema::dropIfExists('agendas');
     }
 }

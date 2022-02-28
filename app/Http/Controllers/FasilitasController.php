@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class FasilitasController extends Controller
 {
@@ -20,73 +23,75 @@ class FasilitasController extends Controller
     public function indexadmin()
     {
         //
-        return view('admin.fasilitas');
+        DB::statement(DB::raw('set @row:=0'));
+        $fasilitas = DB::table('fasilitas')
+        ->select(DB::raw('@row:=@row+1 as row'),'id', 'nama', 'gambar')->get();
+        // $fasilitas = Fasilitas::all();
+        return view('admin.fasilitas', ['fasilitas'=>$fasilitas]);
+
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('crud_tambah.addfasilitas');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $fasilitas = new Fasilitas;
+        $fasilitas->nama = $request->input('nama');
+
+        if($request->hasfile('gambar'))
+        {
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('uploads/fasilitas/', $filename);
+            $fasilitas->gambar = $filename;
+        }
+
+        $fasilitas->save();
+        return redirect()->action([FasilitasController::class, 'indexadmin'])->with('status','Fasilitas Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        return view('crud_edit.editfasilitas', compact('fasilitas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        $fasilitas->nama = $request->input('nama');
+
+        if($request->hasfile('gambar'))
+        {
+            $destination = 'uploads/fasilitas/'.$fasilitas->gambar;
+            if(File::exists($destination))
+            {
+                File::delete($destination);
+            }
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('uploads/fasilitas/', $filename);
+            $fasilitas->gambar = $filename;
+        }
+
+        $fasilitas->update();
+        return redirect()->action([FasilitasController::class, 'indexadmin'])->with('status','Fasilitas Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        $destination = 'uploads/fasilitas/'.$fasilitas->gambar;
+        if(File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        $fasilitas->delete();
+        return redirect()->back()->with('status','Fasilitas Berhasil Dihapus');
     }
 }

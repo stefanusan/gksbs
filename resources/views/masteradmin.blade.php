@@ -9,6 +9,7 @@
 	<!-- <link rel="stylesheet" href="{{ asset('css/admin.css') }}"> -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css"> -->
+	@yield('custom-css-admin')
 	
 	<title>ADMIN GKSBS</title>
 </head>

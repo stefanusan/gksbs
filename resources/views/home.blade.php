@@ -6,39 +6,63 @@
 <!-- Main content -->
 <main role="main">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <br>
     <div class="container">
-        <h1 class="display-3">Berita</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-    </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+
+                @if (session('status'))
+                    <h6 class="alert alert-success">{{ session('status') }}</h6>
+                @endif
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Berita
+                            <a href="{{ url('addberita') }}" class="btn btn-primary float-end">Tambah Berita</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
+                                    <th>Gambar</th>
+                                    <th>Aksi</th>
+                                    <!-- <th>Edit</th>
+                                    <th>Delete</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($berita as $item)
+                                <tr>
+                                    <td>{{ $item->row }}</td>
+                                    <td>{{ $item->judul }}</td>
+                                    <td>{{ $item->deskripsi }}</td>
+                                    <?php if($item->gambar <> null) : ?>
+                                        <td>
+                                            <img src="{{ asset('uploads/berita/'.$item->gambar) }}" width="200px" height="200px" alt="Image">
+                                        </td>
+                                    <?php else : ?>
+                                        <td></td>
+                                    <?php endif ?>
+                                    <td>
+                                        <a href="{{ url('editberita/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('deleteberita/'.$item->id) }}" class="btn btn-danger btn-sm">Hapus</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                    </div>
+
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        
-    </div>
-
-    <hr>
-
-    </div> <!-- /container -->
 
 </main>
 <!-- /.content -->

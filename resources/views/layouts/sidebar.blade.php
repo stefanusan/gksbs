@@ -114,7 +114,7 @@
           </li>
           <li class="nav-header">Account</li>
           <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link {{ Route::is('pages.datatablejemaat') ? 'active':''  }}">
+            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active':''  }}">
               <i class="nav-icon fas fa-sign-in-alt"></i>
               <p>
                 Login
